@@ -109,6 +109,11 @@ public:
 
 class BPFProgram {
 private:
+    // I could make the name 'procmon_bpf' via cmake variables and predefinition
+    // as I already did with macro 'BPF_SKEL_HEADER' above in #include
+    // but this will worsen the readability of the code
+    // therefore, let's just leave 'procmon_bpf'
+    // and let's assume that this is my macro
     struct procmon_bpf* pmSkel{nullptr};
     struct perf_buffer* pmBuffer{nullptr};
     EventBuffer& eventBuffer;
