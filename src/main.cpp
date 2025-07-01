@@ -75,7 +75,7 @@ private:
     std::ofstream outStream;
 
 public:
-    JsonDumper(const std::string& filename) : outStream(filename, std::ios::out) {
+    explicit JsonDumper(const std::string& filename) : outStream(filename, std::ios::out) {
         if (!outStream)
             throw std::runtime_error("Cannot open " + filename);
     }
@@ -114,7 +114,7 @@ private:
     EventBuffer& eventBuffer;
 
 public:
-    BPFProgram(EventBuffer& buf) : eventBuffer(buf) {
+    explicit BPFProgram(EventBuffer& buf) : eventBuffer(buf) {
         if (pmSkel = procmon_bpf__open_and_load(); !pmSkel)
             throw std::runtime_error("Failed to open BPF skeleton");
 
